@@ -1,19 +1,21 @@
+import { Link } from "react-router-dom";
 import SearchForm from "./SearchForm";
 
 export default function Navbar() {
   return (
     <>
       <header className="header">
-        <img src="../assets/logo.png" alt="Logo" className="header__logo" />
-        
+        <Link to="/">
+          <img src="../assets/logo.png" alt="Logo" className="header__logo" />
+        </Link>
         <SearchForm />
 
         <nav className="nav">
           <ul className="nav__list">
             <li className="nav__item">
-              <button className="nav__btn nav__btn--add-recipe">
-                <span>Add recipe</span>
-              </button>
+              <Link to="/AddRecipe" className="nav__btn nav__btn--add-recipe">
+                Add recipe
+              </Link>
             </li>
             <li className="nav__item">
               <button className="nav__btn nav__btn--bookmarks">
@@ -22,13 +24,11 @@ export default function Navbar() {
               <div className="bookmarks">
                 <ul className="bookmarks__list">
                   <div className="message">
-                    <div>
-                    </div>
+                    <div></div>
                     <p>
                       No bookmarks yet. Find a nice recipe and bookmark it :)
                     </p>
                   </div>
-
                 </ul>
               </div>
             </li>
