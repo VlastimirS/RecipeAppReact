@@ -1,18 +1,12 @@
+import SearchForm from "./SearchForm";
+
 export default function Navbar() {
   return (
     <>
       <header className="header">
         <img src="../assets/logo.png" alt="Logo" className="header__logo" />
-        <form className="search">
-          <input
-            type="text"
-            className="search__field"
-            placeholder="Search over 1,000,000 recipes..."
-          />
-          <button className="btn search__btn">
-            <span>Search</span>
-          </button>
-        </form>
+        
+        <SearchForm />
 
         <nav className="nav">
           <ul className="nav__list">
@@ -35,19 +29,6 @@ export default function Navbar() {
                     </p>
                   </div>
 
-                  <li className="preview">
-                    <a className="preview__link" href="#23456">
-                      <figure className="preview__fig">
-                        <img src="#" alt="Test" />
-                      </figure>
-                      <div className="preview__data">
-                        <h4 className="preview__name">
-                          Pasta with Tomato Cream ...
-                        </h4>
-                        <p className="preview__author">The Pioneer Woman</p>
-                      </div>
-                    </a>
-                  </li>
                 </ul>
               </div>
             </li>
