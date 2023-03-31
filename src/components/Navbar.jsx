@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import SearchForm from "./SearchForm";
 
 export default function Navbar() {
@@ -13,9 +13,9 @@ export default function Navbar() {
         <nav className="nav">
           <ul className="nav__list">
             <li className="nav__item">
-              <Link to="/AddRecipe" className="nav__btn nav__btn--add-recipe">
+              <NavLink to="/AddRecipe" className="nav__btn nav__btn--add-recipe">
                 Add recipe
-              </Link>
+              </NavLink>
             </li>
             <li className="nav__item">
               <button className="nav__btn nav__btn--bookmarks">

@@ -77,8 +77,8 @@
       color: inherit;
       font-size: 1.4rem;
       font-weight: 700;
+      background-color: transparent;
       text-transform: uppercase;
-      background: none;
       border: none;
       cursor: pointer;
       padding: 0 1.5rem;
@@ -100,7 +100,7 @@
       }
   
       &:hover {
-        background-color: #636161;
+        background-color: #f2efee;
       }
     }
   }

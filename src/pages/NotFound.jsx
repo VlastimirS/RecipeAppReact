@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 
-export default function ErrorPage() {
+export default function NotFound() {
   return (
     <>
       <div className="container">
