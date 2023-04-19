@@ -1,40 +1,84 @@
-import { Link, NavLink } from "react-router-dom";
-import SearchForm from "./SearchForm";
+import React, { useEffect, useState, useContext } from "react";
+import { Bookmark } from "./Bookmark";
+import { selectedContext } from "./HomePage";
+import { IoSearchOutline, IoAddCircleOutline } from "react-icons/io5";
 
-export default function Navbar() {
+export const Navbar = () => {
+  const { setPage, setResults, setOpenModal, beginSpinner, stopSpinner } =
+    useContext(selectedContext);
+  const [search, setSearch] = useState("");
+  const [searchValue, setSearchValue] = useState();
+
+  useEffect(() => {
+    //remember to catch the err
+    if (!searchValue && searchValue !== "") return;
+    fetch(
+      `https://forkify-api.herokuapp.com/api/v2/recipes/?search=${searchValue}&key=cbc2d4f0-4cd9-4886-90b8-2743d93b88b8
+      `
+    ).then((res) =>
+      res
+        .json()
+        .then((re) => {
+          // console.log(re);
+          setResults(re);
+          stopSpinner("search");
+          setSearchValue(undefined);
+          if (re.status === "fail") throw new Error(`${re.message}`);
+        })
+        .catch((err) =>
+          alert(`We have some error with sever on <HeaderView>: ${err}`)
+        )
+    );
+
+    setSearch(""); // clear search
+  }, [searchValue, setResults]);
+
   return (
-    <>
-      <header className="header">
-        <Link to="/">
-          <img src="../assets/logo.png" alt="Logo" className="header__logo" />
-        </Link>
-        <SearchForm />
+    <header className="header">
+      <img src="../img/logo.png" alt="Logo" className="header__logo" />
+      <form className="search">
+        <input
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          type="text"
+          className="search__field"
+          placeholder="Search over 1,000,000 recipes..."
+        />
+        <button
+          onClick={(e) => {
+            // idk but its need a prevent default if not => error
+            e.preventDefault();
+            setSearchValue(search); //change searchvalue to make a api call to get recipes.
+            setPage(1); // set page to 1
+            beginSpinner("search"); //spin effect
+          }}
+          className="btn search__btn"
+        >
+          <IoSearchOutline />
+          <span>Search</span>
+        </button>
+      </form>
 
-        <nav className="nav">
-          <ul className="nav__list">
-            <li className="nav__item">
-              <NavLink to="/AddRecipe" className="nav__btn nav__btn--add-recipe">
-                Add recipe
-              </NavLink>
-            </li>
-            <li className="nav__item">
-              <button className="nav__btn nav__btn--bookmarks">
-                <span>Bookmarks</span>
-              </button>
-              <div className="bookmarks">
-                <ul className="bookmarks__list">
-                  <div className="message">
-                    <div></div>
-                    <p>
-                      No bookmarks yet. Find a nice recipe and bookmark it :)
-                    </p>
-                  </div>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </nav>
-      </header>
-    </>
+      <nav className="nav">
+        <ul className="nav__list">
+          <li className="nav__item">
+            <button
+              onClick={() =>
+                setOpenModal((prev) => {
+                  return !prev;
+                })
+              }
+              className="nav__btn nav__btn--add-recipe"
+            >
+              <IoAddCircleOutline />
+              <span>Add recipe</span>
+            </button>
+          </li>
+          <Bookmark />
+        </ul>
+      </nav>
+    </header>
   );
-}
+};
