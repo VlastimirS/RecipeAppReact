@@ -27,10 +27,8 @@ export const Recipe = () => {
   const [serving, setServing] = useState("");
   const id = window.location.hash.slice(1);
 
-  //check id recipe if it exist in bookmarked
   const check = bookmarked?.some((marked) => marked.recipe.id === id);
 
-  // check if customer find this page with id in the href, if yes, render recipe of that id
   useEffect(() => {
     if (!selected) setSelected(id);
   }, [selected, setSelected, id]);
@@ -56,9 +54,7 @@ export const Recipe = () => {
           setRecipe(re.data?.recipe);
           setServing(re.data.recipe?.servings);
         })
-        .catch((err) =>
-          alert(`We have some error with sever on <RecipeView>: ${err}`)
-        )
+        .catch((err) => alert(`We have some error with sever`))
     );
   }, [selected]);
 
@@ -72,16 +68,6 @@ export const Recipe = () => {
         <div className="message">
           <br />
           <br />
-
-          <Canvas
-            shadows
-            camera={{
-              fov: 45,
-              near: 0.1,
-              far: 200,
-              position: [-4, 3, 6],
-            }}
-          ></Canvas>
         </div>
       ) : (
         <>

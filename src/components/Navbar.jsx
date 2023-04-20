@@ -4,13 +4,12 @@ import { selectedContext } from "./HomePage";
 import { IoSearchOutline, IoAddCircleOutline } from "react-icons/io5";
 
 export const Navbar = () => {
-  const { setPage, setResults, setOpenModal, beginSpinner, stopSpinner } =
+  const { setPage, setResults, beginSpinner, stopSpinner } =
     useContext(selectedContext);
   const [search, setSearch] = useState("");
   const [searchValue, setSearchValue] = useState();
 
   useEffect(() => {
-    //remember to catch the err
     if (!searchValue && searchValue !== "") return;
     fetch(
       `https://forkify-api.herokuapp.com/api/v2/recipes/?search=${searchValue}&key=cbc2d4f0-4cd9-4886-90b8-2743d93b88b8
@@ -19,23 +18,20 @@ export const Navbar = () => {
       res
         .json()
         .then((re) => {
-          // console.log(re);
           setResults(re);
           stopSpinner("search");
           setSearchValue(undefined);
           if (re.status === "fail") throw new Error(`${re.message}`);
         })
-        .catch((err) =>
-          alert(`We have some error with sever on <HeaderView>: ${err}`)
-        )
+        .catch((err) => alert(`We have some error with sever`))
     );
 
-    setSearch(""); // clear search
+    setSearch("");
   }, [searchValue, setResults]);
 
   return (
     <header className="header">
-      <img src="../img/logo.png" alt="Logo" className="header__logo" />
+      <img src="../assets/logo.png" alt="Logo" className="header__logo" />
       <form className="search">
         <input
           value={search}
@@ -48,7 +44,6 @@ export const Navbar = () => {
         />
         <button
           onClick={(e) => {
-            // idk but its need a prevent default if not => error
             e.preventDefault();
             setSearchValue(search); //change searchvalue to make a api call to get recipes.
             setPage(1); // set page to 1
@@ -64,14 +59,7 @@ export const Navbar = () => {
       <nav className="nav">
         <ul className="nav__list">
           <li className="nav__item">
-            <button
-              onClick={() =>
-                setOpenModal((prev) => {
-                  return !prev;
-                })
-              }
-              className="nav__btn nav__btn--add-recipe"
-            >
+            <button className="nav__btn nav__btn--add-recipe">
               <IoAddCircleOutline />
               <span>Add recipe</span>
             </button>

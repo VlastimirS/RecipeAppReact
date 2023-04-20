@@ -48,7 +48,6 @@ export const SearchResult = ({ res }) => {
         </ul>
       )}
 
-      {/* May be write it to component <pag /> receive {page,setpage,numpage}*/}
       <div className="pagination">
         {page !== 1 ? (
           <button

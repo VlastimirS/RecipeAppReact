@@ -15,12 +15,11 @@ export const HomePage = () => {
       ? JSON.parse(localStorage.getItem("bookmarked"))
       : []
   );
-  const [openModal, setOpenModal] = useState(false);
+
   const [recipeCreated, setRecipeCreated] = useState();
   const [spinner, setSpinner] = useState({
     search: false,
     recipe: false,
-    modal: false,
   });
 
   const beginSpinner = (view) => {
@@ -43,8 +42,6 @@ export const HomePage = () => {
     setResults,
     bookmarked,
     setBookmarked,
-    openModal,
-    setOpenModal,
     recipeCreated,
     setRecipeCreated,
     spinner,
