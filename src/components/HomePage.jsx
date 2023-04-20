@@ -2,10 +2,10 @@ import React, { useEffect, useState, createContext } from "react";
 import { Navbar } from "./Navbar";
 import { Recipe } from "./Recipe";
 import { SearchResult } from "./SearchResult";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export const selectedContext = createContext();
 export const HomePage = () => {
-  // const [data, setData] = useState("");
   const [results, setResults] = useState();
 
   const [page, setPage] = useState(1);
@@ -59,12 +59,6 @@ export const HomePage = () => {
       { recipe: recipeCreated, id: recipeCreated.id },
     ]);
     setSelected(recipeCreated.id);
-    // Auto close modal when updated data
-    // setTimeout(() => {
-    //   setOpenModal((prev) => {
-    //     return !prev;
-    //   });
-    // }, 800);
   }, [recipeCreated]);
 
   return (

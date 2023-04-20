@@ -36,7 +36,6 @@ export const Recipe = () => {
   }, [selected, setSelected, id]);
 
   useEffect(() => {
-    // add bookmark to local
     localStorage.setItem("bookmarked", JSON.stringify(bookmarked));
   }, [bookmarked]);
 
@@ -52,14 +51,9 @@ export const Recipe = () => {
         .json()
         .then((re) => {
           if (re.status === "fail") throw new Error(`${re.message}`);
-          // console.log(re);
           stopSpinner("recipe");
 
-          // I put "?" in data.recipe and re.data.recipe to make sure app still work when the URL source is down
-
           setRecipe(re.data?.recipe);
-          // console.log(re.data.recipe);
-          //may not use usestate serving by use recipe.servings and setRecipe((prev)=> [...prev, servings: prev.servings + 1])
           setServing(re.data.recipe?.servings);
         })
         .catch((err) =>
@@ -79,11 +73,15 @@ export const Recipe = () => {
           <br />
           <br />
 
-          <p>
-            {" "}
-            <IoHeartOutline className="recipe__info-icon-heart" /> Start by
-            searching for a recipe or an ingredient. Have fun!
-          </p>
+          <Canvas
+            shadows
+            camera={{
+              fov: 45,
+              near: 0.1,
+              far: 200,
+              position: [-4, 3, 6],
+            }}
+          ></Canvas>
         </div>
       ) : (
         <>
