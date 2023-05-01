@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { selectedContext } from "./HomePage";
+import { Canvas } from "@react-three/fiber";
+import Models from "../models";
 import {
   IoBookmark,
   IoTimerOutline,
@@ -42,7 +44,7 @@ export const Recipe = () => {
     beginSpinner("recipe");
     document.location.href = `/#${selected}`;
     fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes/${selected}?key=cbc2d4f0-4cd9-4886-90b8-2743d93b88b8
+      `https://forkify-api.herokuapp.com/api/v2/recipes/${selected}?key=1979b5e5-9bcd-4fe8-a64a-95767347a842
       `
     ).then((res) =>
       res
@@ -50,7 +52,6 @@ export const Recipe = () => {
         .then((re) => {
           if (re.status === "fail") throw new Error(`${re.message}`);
           stopSpinner("recipe");
-
           setRecipe(re.data?.recipe);
           setServing(re.data.recipe?.servings);
         })
@@ -66,8 +67,17 @@ export const Recipe = () => {
         </div>
       ) : !recipe ? (
         <div className="message">
-          <br />
-          <br />
+          <Canvas
+            shadows
+            camera={{
+              fov: 45,
+              near: 0.1,
+              far: 600,
+              position: [-4, 3, 6],
+            }}
+          >
+            <Models />
+          </Canvas>
         </div>
       ) : (
         <>

@@ -190,3 +190,13 @@
     opacity: 1;
   }
 }
+
+@media only screen and (max-width: 766px) {
+  header.header {
+    flex-direction: column;
+  }
+
+  .nav {
+    display: none;
+  }
+}

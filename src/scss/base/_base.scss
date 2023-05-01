@@ -1,12 +1,12 @@
 body {
-    font-family: Nunito Sans,sans-serif;
-    font-weight: 400;
-    line-height: 1.6;
-    color: #615551;
-    background-image: linear-gradient(to right bottom,#fbdb89,#f48982);
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 100vh;
+  font-family: Nunito Sans, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #615551;
+  background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
 }
 
 * {
@@ -25,7 +25,6 @@ html {
   font-size: 62.5%;
 }
 
-
 * {
   scroll-behavior: smooth;
 }
@@ -34,26 +33,29 @@ a.active {
   background-color: #f2efee;
 }
 
-
 .container {
-    max-width: 120rem;
-    min-height: 117rem;
-    margin: 4vw auto;
-    background-color: #fff;
-    border-radius: 9px;
-    overflow: hidden;
-    box-shadow: 0 2rem 6rem 0.5rem rgba(#868686, 0.2);
-  
-    display: grid;
-    grid-template-rows: 10rem minmax(100rem, auto);
-    grid-template-columns: 1fr 2fr;
-    grid-template-areas:
-      'head head'
-      'list recipe';
-  
-    @media only screen and (max-width: 1250px) {
-      max-width: 100%;
-      margin: 0;
-      border-radius: 0;
-    }
+  max-width: 120rem;
+  min-height: 117rem;
+  margin: 4vw auto;
+  background-color: #fff;
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0 2rem 6rem 0.5rem rgba(#868686, 0.2);
+
+  display: grid;
+  grid-template-rows: 10rem minmax(100rem, auto);
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    "head head"
+    "list recipe";
+
+  @media only screen and (max-width: 1250px) {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
   }
+}
+
+.message {
+  height: 100%;
+}
