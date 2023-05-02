@@ -118,12 +118,6 @@ export const Recipe = () => {
                 </button>
               </div>
             </div>
-
-            <div
-              className={`recipe__user-generated ${recipe.key ? "" : "hidden"}`}
-            >
-              <IoPerson />
-            </div>
             <button
               onClick={() => {
                 // ADD and REmove bookmark
@@ -182,7 +176,6 @@ export const Recipe = () => {
               rel="noreferrer"
             >
               <span>Directions</span>
-              <IoHeartOutline />
             </a>
           </div>
         </>

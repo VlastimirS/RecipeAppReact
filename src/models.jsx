@@ -8,7 +8,7 @@ import Fox from "./Fox.jsx";
 export default function Models() {
   return (
     <>
-      {/* <OrbitControls makeDefault /> */}
+      <OrbitControls makeDefault />
 
       <directionalLight
         castShadow
