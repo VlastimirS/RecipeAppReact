@@ -58,6 +58,11 @@
     display: flex;
     align-items: center;
     padding: 7.5rem 8rem 3.5rem 8rem;
+
+    @media only screen and (max-width: 1250px) {
+      flex-direction: column;
+      padding: 5rem 8rem 3.5rem 8rem;
+    }
   }
 
   &__info {
@@ -118,6 +123,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media only screen and (max-width: 1250px) {
+      padding: 2.5rem 4rem;
+    }
   }
 
   &__ingredient-list {
@@ -125,6 +134,10 @@
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem 3rem;
     list-style: none;
+
+    @media only screen and (max-width: 1250px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__ingredient {
@@ -153,6 +166,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media only screen and (max-width: 776px) {
+      padding: 5rem 3rem;
+    }
   }
 
   &__directions-text {

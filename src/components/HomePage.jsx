@@ -62,8 +62,10 @@ export const HomePage = () => {
     <selectedContext.Provider value={value}>
       <div className="container">
         <Navbar />
-        <SearchResult res={results} />
-        <Recipe />
+        <div className="container-main">
+          <SearchResult res={results} />
+          <Recipe />
+        </div>
       </div>
     </selectedContext.Provider>
   );
