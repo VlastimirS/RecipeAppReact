@@ -14,6 +14,9 @@ export const Result = ({ data }) => {
         }`}
         href={`#${data.id}`}
       >
+        <figure className="preview__fig">
+          <img src={data.image_url} alt="Test" />
+        </figure>
         <div className="preview__data">
           <h4 className="preview__title">{data.title}</h4>
           <p className="preview__publisher">{data.publisher}</p>
