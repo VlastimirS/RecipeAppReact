@@ -28,12 +28,6 @@ export const SearchResult = ({ res }) => {
 
   return (
     <div className="search-results">
-      {res?.data.recipes.length === 0 && (
-        <div className="error">
-          <p>No recipes found for your query! Please try another one!</p>
-        </div>
-      )}
-
       {spinner.search ? (
         <div className="spinner">
           <IoRestaurantOutline />

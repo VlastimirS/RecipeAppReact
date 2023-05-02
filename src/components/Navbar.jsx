@@ -4,13 +4,13 @@ import { selectedContext } from "./HomePage";
 import { IoSearchOutline, IoAddCircleOutline } from "react-icons/io5";
 
 export const Navbar = () => {
-  const { setPage, setResults, beginSpinner, stopSpinner } =
-    useContext(selectedContext);
+  const { setPage, setResults } = useContext(selectedContext);
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState();
 
   useEffect(() => {
-    if (!searchValue && searchValue !== "") return;
+    setIsLoading(true);
     fetch(
       `https://forkify-api.herokuapp.com/api/v2/recipes/?search=${searchValue}&key=1979b5e5-9bcd-4fe8-a64a-95767347a842
       `
@@ -19,14 +19,13 @@ export const Navbar = () => {
         .json()
         .then((re) => {
           setResults(re);
-          stopSpinner("search");
-          setSearchValue(undefined);
           if (re.status === "fail") throw new Error(`${re.message}`);
         })
         .catch((err) => alert(`We have some error with server`))
     );
-
     setSearch("");
+
+    setIsLoading(false);
   }, [searchValue, setResults]);
 
   return (
@@ -45,9 +44,11 @@ export const Navbar = () => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            setSearchValue(search); //change searchvalue to make a api call to get recipes.
-            setPage(1); // set page to 1
-            beginSpinner("search"); //spin effect
+            setSearchValue(search);
+            setPage(1);
+            {
+              isLoading && <p>Loading</p>;
+            }
           }}
           className="btn search__btn"
         >
