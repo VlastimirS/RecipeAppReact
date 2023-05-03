@@ -7,3 +7,4 @@
 5. Booking functionality
 6. Store booking data
 7. On page load, read saved bookmarks
+8. Implementing 3d models in React Three Fiber
